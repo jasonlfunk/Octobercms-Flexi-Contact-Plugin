@@ -6,7 +6,7 @@
  * Time: 12:49 AM
  */
 
-namespace LaminSanneh\FlexiContact;
+namespace ToughSpace\FlexiContact;
 
 use System\Classes\PluginBase;
 use Backend\Facades\Backend;
@@ -19,9 +19,9 @@ class Plugin extends PluginBase{
     public function pluginDetails()
     {
         return [
-            'name'        => 'Flexi Contact',
+            'name'        => 'Flexi Contact (updated by TS)',
             'description' => 'A Flexible and Configurable Contact Form to Add to any Page',
-            'author'      => 'Lamin Sanneh',
+            'author'      => 'Lamin Sanneh (updated by Jason)',
             'icon'        => 'icon-leaf'
         ];
     }
@@ -29,7 +29,7 @@ class Plugin extends PluginBase{
     public function registerComponents()
     {
         return [
-            'LaminSanneh\FlexiContact\Components\ContactForm' => 'contactForm',
+            'ToughSpace\FlexiContact\Components\ContactForm' => 'contactForm',
         ];
     }
 
@@ -41,7 +41,7 @@ class Plugin extends PluginBase{
                 'description' => 'Manage the settings for the flexi contact form.',
                 'category'    => 'Marketing',
                 'icon'        => 'icon-cog',
-                'class'       => 'LaminSanneh\FlexiContact\Models\Settings',
+                'class'       => 'ToughSpace\FlexiContact\Models\Settings',
                 'order'       => 100
             ]
         ];

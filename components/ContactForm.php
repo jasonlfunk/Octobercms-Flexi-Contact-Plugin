@@ -6,11 +6,11 @@
  * Time: 12:55 AM
  */
 
-namespace LaminSanneh\FlexiContact\components;
+namespace ToughSpace\FlexiContact\components;
 
 
 use Cms\Classes\ComponentBase;
-use LaminSanneh\FlexiContact\Models\Settings;
+use ToughSpace\FlexiContact\Models\Settings;
 
 class ContactForm extends ComponentBase{
 
@@ -49,7 +49,7 @@ class ContactForm extends ComponentBase{
         $name = post('name');
 
         //email of person contacting you
-        $fromEmail = post('email');
+        $email = post('email');
 
         //subject or topic why they are contacting you
         $subject = post('subject');
@@ -58,12 +58,12 @@ class ContactForm extends ComponentBase{
         $body = post('body');
 
         $errorHappened = false;
-        if (empty($name) || empty($fromEmail) || empty($subject) || empty($body)){
+        if (empty($name) || empty($email) || empty($subject) || empty($body)){
             $errorHappened = true;
             $flashMessae = '';
             if ( empty($name) )
                 $flashMessae .= '<p>Please enter your name.</p>';
-            if ( empty($fromEmail) )
+            if ( empty($email) )
                 $flashMessae .= '<p>Please enter an email address.</p>';
             if ( empty($subject) )
                 $flashMessae .= '<p>Please enter subject.';
@@ -74,15 +74,15 @@ class ContactForm extends ComponentBase{
             $this->page['errorHappened'] = $errorHappened;
         }
 
-        $data = compact('subject','body','name');
+        $data = compact('subject','body','name', 'email');
 
         $this->page["confirmation_text"] = Settings::get('confirmation_text');
         if ($errorHappened)
             return ['error' => true, 'message' => 'One or more elements failed validation'];
         else
-            \Mail::send('laminsanneh.flexicontact::emails.message', $data, function($message) use($fromEmail, $name)
+            \Mail::send('laminsanneh.flexicontact::emails.message', $data, function($message)
             {
-                $message->from($fromEmail, $name);
+                $message->from(Settings::get('sender_email'), Settings::get('sender_name'));
                 $message->to(Settings::get('recipient_email'), Settings::get('recipient_name'))->subject(Settings::get('subject'));
             });
             return ['error' => false];

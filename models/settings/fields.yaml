@@ -3,6 +3,16 @@
 # ===================================
 
 fields:
+  sender_email:
+    label: Sender Email
+    comment:  The person from whom the email is sent
+    description:  The person from whom the email is sent
+    type: text
+  sender_name:
+    label: Sender Name
+    comment:  The full name of the person from whom the email is sent
+    description:  The full name of the person from whom the email is sent
+    type: text
   recipient_email:
     label: Recipient Email
     comment:  The person to whom the email is sent to

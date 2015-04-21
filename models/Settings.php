@@ -6,7 +6,7 @@
  * Time: 10:35 AM
  */
 
-namespace LaminSanneh\FlexiContact\Models;
+namespace ToughSpace\FlexiContact\Models;
 
 use Model;
 class Settings extends Model{
